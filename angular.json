@@ -24,7 +24,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -62,7 +62,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "newsApp:build"
+            "browserTarget": "newsApp:build",
           },
           "configurations": {
             "production": {
@@ -88,7 +88,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }
@@ -119,6 +119,12 @@
           }
         }
       }
-    }},
-  "defaultProject": "newsApp"
+    }
+  },
+  "defaultProject": "newsApp",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

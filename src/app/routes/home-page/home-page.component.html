@@ -1,0 +1,17 @@
+<div class="container">
+    <app-search-post 
+    [sources]="sources" 
+    [bookmarks]="bookmarks" 
+    (formSubmit)="getArticles($event)"
+    (addFavoriteSource)="addSourceToFavorites($event)"
+    (removeFavoriteSource)="removeSourceToFavorites($event)">
+    </app-search-post>
+
+    <p class="alert alert-primary" *ngIf="articles && articles.length === 0">Aucun article n'a pu être trouvé</p>
+
+    <section class="container" *ngIf="articles && articles.length !== 0">
+        <app-item-post 
+        *ngFor="let article of articles" [article]="article">
+        </app-item-post>
+    </section>
+</div>

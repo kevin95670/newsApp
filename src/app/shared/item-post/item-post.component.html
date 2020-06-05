@@ -1,0 +1,11 @@
+<article class="row d-flex align-items-center my-4">
+	<div class="col-12 col-md-4">
+		<img class="img-fluid" [src]="article.urlToImage" alt="{{article.title}}">
+	</div>
+	<div class="col-12 col-md-8">
+		<h2 class="font-weight-bold">{{ article.title }}</h2>
+		<p *ngIf="article.author" class="font-italic">Publié par {{ article.author }}</p>
+		<p>{{ article.description }}</p>
+		<a class="btn btn-primary" [href]="article.url" target="_blank" rel="noopener">Lire l'article</a>
+	</div>
+</article>

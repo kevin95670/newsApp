@@ -1,0 +1,66 @@
+<form 
+class="container mt-4"
+[formGroup]="formData"
+(submit)="formSubmit.emit(formData.value)">
+	<div class="form-group">
+		<label for="firstname">Prénom</label>
+		<input
+			class="form-control"
+			formControlName="firstname"
+			type="firstname" name="firstname" required placeholder="Prénom">
+	</div>
+    <div *ngIf="formData.controls.firstname.invalid && (formData.controls['firstname'].dirty || formData.controls.firstname.touched)" class="alert alert-danger">
+        <div *ngIf="formData.controls.firstname.errors.required">Le prénom est requis</div>
+  	</div>
+
+	<div class="form-group">
+		<label for="lastname">Nom</label>
+		<input
+		class="form-control"
+		formControlName="lastname"
+		type="lastname" name="lastname" required placeholder="Nom">
+	</div>
+	<div *ngIf="formData.controls.lastname.invalid && (formData.controls.lastname.dirty || formData.controls.lastname.touched)" class="alert alert-danger">
+        <div *ngIf="formData.controls.lastname.errors.required">Le nom est requis</div>
+  	</div>
+
+	<div class="form-group">
+		<label for="email">E-mail</label>
+		<input
+		class="form-control"
+		formControlName="email" 
+		type="email" name="email" id="email" required placeholder="example@example.com">    
+	</div>
+	<div *ngIf="formData.controls.email.invalid && (formData.controls.email.dirty || formData.controls.email.touched)" class="alert alert-danger">
+		<div *ngIf="formData.controls.email.errors.required">Le mail est requis</div>
+		<div *ngIf="formData.controls.email.errors?.pattern">Email non valide</div>
+	</div>
+
+	<div class="form-group">
+		<label for="password">Mot de passe</label>
+		<input
+		class="form-control"
+		formControlName="password"
+		type="password" name="password" required placeholder="Mot de passe">
+	</div>
+	<div *ngIf="formData.controls.password.invalid && (formData.controls.password.dirty || formData.controls.password.touched)" class="alert alert-danger">
+		<div *ngIf="formData.controls.password.errors.required">Le mot de passe est requis</div>
+		<div *ngIf="formData.controls.password.errors.minlength">Le mot de passe doit contenir 5 caractère minimum</div>
+	</div>
+
+	<div class="form-group">
+		<label for="confirmPassword">Mot de passe</label>
+		<input
+		class="form-control"
+		formControlName="confirmPassword"
+		type="password" name="confirmPassword" required placeholder="Confirmation du mot de passe">
+	</div>
+	<div *ngIf="(formData.controls.password.dirty || formData.controls.password.touched) && (formData.controls.confirmPassword.dirty || formData.controls.confirmPassword.touched)">
+		<div *ngIf="formData.hasError('differents')" class="alert alert-danger">Les 2 mots de passe ne sont pas semblables</div>
+	</div>
+	<button
+	class="btn btn-primary"
+	[disabled]="!formData.valid"
+	type="submit">S'inscrire
+	</button>
+</form>

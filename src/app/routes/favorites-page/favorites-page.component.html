@@ -1,0 +1,13 @@
+<div class="container">
+  	<h1 class="my-4 text-center">Vos favoris</h1>
+  	<div *ngIf="bookmarks.length !== 0" class="border px-2 py-4 mb-4">
+		<button class="btn btn-primary mx-2 my-2" *ngFor="let bookmark of bookmarks" (click)="getArticles(bookmark.id)">{{ bookmark.name }}</button>
+	</div>
+	<div *ngIf="bookmarks.length === 0" class="alert alert-primary">Vous n'avez aucun favoris</div>
+	<p class="alert alert-primary" *ngIf="articles && articles.length === 0">Aucun article n'a pu être trouvé</p>
+	<section class="container" *ngIf="articles && articles.length !== 0">
+		<app-item-post 
+		*ngFor="let article of articles" [article]="article">
+		</app-item-post>
+	</section>
+</div>

@@ -1,0 +1,42 @@
+<form
+class="container my-4"
+[formGroup]="formData"
+(submit)="formSubmit.emit(formData.value)">
+    <div class="form-group">
+        <select formControlName="source" class="form-control">
+            <option *ngFor="let source of sources" [value]="source.id" >{{ source.name }}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <input
+        class="form-control"
+        formControlName="keywords"
+        type="text" name="keyword" placeholder="Mot clé">
+    </div>
+    <div class="btns mt-3">
+        <button 
+        class="btn btn-primary"
+        [disabled]="!formData.valid"
+        type="submit">Rechercher
+        </button>
+        <button 
+        class="btn btn-primary ml-3"
+        [disabled]="!formData.controls['source'].value && !formData.controls['keywords'].value"
+        (click) = "resetNewsForm()"
+        type="submit">Réinitialiser
+        </button>
+        <button 
+        class="btn btn-danger float-right" 
+        *ngIf="!sourceAlreadyInFavorites(formData.value.source) && user" 
+        type="button" 
+        (click)="addFavoriteSource.emit(formData.value.source)">Ajouter en favoris
+        </button>
+        <button 
+        class="btn btn-danger float-right" 
+        *ngIf="sourceAlreadyInFavorites(formData.value.source) && user" 
+        type="button" 
+        (click)="removeFavoriteSource.emit(formData.value.source)">
+        Supprimer des favoris
+        </button>
+    </div>
+</form>
