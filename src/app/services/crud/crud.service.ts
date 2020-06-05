@@ -80,6 +80,13 @@ export class CrudService {
 	        // Return data
 	        return apiResponse || {};
 	        break;
+        case 'register':
+	        // Set user info observable value
+	        this.ObservablesService.setObservableData('user',apiResponse.data)
+
+	        // Return data
+	        return apiResponse || {};
+	        break;
 	    default:
 	        // Retun data anytime
 	        return apiResponse || {};
